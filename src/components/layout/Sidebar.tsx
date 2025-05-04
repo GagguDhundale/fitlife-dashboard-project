@@ -10,7 +10,9 @@ import {
   Award, 
   User, 
   Settings, 
-  Home
+  Home,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,7 +25,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
   return (
     <div 
       className={cn(
-        "h-screen bg-card border-r border-border transition-all duration-300 flex flex-col",
+        "h-screen bg-card border-r border-border transition-all duration-300 flex flex-col shadow-sm",
         collapsed ? "w-16" : "w-64"
       )}
     >
@@ -34,12 +36,13 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
         <button 
           onClick={() => setCollapsed(!collapsed)} 
           className="p-2 rounded-full hover:bg-muted text-muted-foreground"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          {collapsed ? "→" : "←"}
+          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </button>
       </div>
       
-      <nav className="flex-1 overflow-y-auto p-2">
+      <nav className="flex-1 overflow-y-auto p-3">
         <ul className="space-y-1">
           {[
             { name: 'Dashboard', icon: Home, path: '/' },
@@ -54,8 +57,8 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
               <Link
                 to={item.path}
                 className={cn(
-                  "flex items-center p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
-                  window.location.pathname === item.path ? "bg-accent/50 text-accent-foreground" : "text-foreground"
+                  "flex items-center p-3 rounded-lg hover:bg-accent/10 hover:text-accent-foreground transition-colors",
+                  window.location.pathname === item.path ? "bg-accent/20 text-primary" : "text-foreground"
                 )}
               >
                 <item.icon className={cn("h-5 w-5", collapsed ? "mx-auto" : "mr-3")} />
@@ -66,7 +69,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
         </ul>
       </nav>
       
-      <div className="p-2 border-t border-border mt-auto">
+      <div className="p-3 border-t border-border mt-auto">
         <ul className="space-y-1">
           {[
             { name: 'Profile', icon: User, path: '/profile' },
@@ -75,7 +78,10 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
             <li key={item.name}>
               <Link
                 to={item.path}
-                className="flex items-center p-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+                className={cn(
+                  "flex items-center p-3 rounded-lg hover:bg-accent/10 hover:text-accent-foreground transition-colors",
+                  window.location.pathname === item.path ? "bg-accent/20 text-primary" : "text-foreground"
+                )}
               >
                 <item.icon className={cn("h-5 w-5", collapsed ? "mx-auto" : "mr-3")} />
                 {!collapsed && <span>{item.name}</span>}
