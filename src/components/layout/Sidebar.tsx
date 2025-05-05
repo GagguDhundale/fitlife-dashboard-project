@@ -8,7 +8,7 @@ import {
   Activity, 
   Calculator, 
   Award, 
-  User, 
+  UserRound,
   Settings, 
   Home,
   ChevronLeft,
@@ -72,7 +72,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
       <div className="p-3 border-t border-border mt-auto">
         <ul className="space-y-1">
           {[
-            { name: 'Profile', icon: User, path: '/profile' },
+            { name: 'Profile', icon: UserRound, path: '/profile' },
             { name: 'Settings', icon: Settings, path: '/settings' },
           ].map((item) => (
             <li key={item.name}>

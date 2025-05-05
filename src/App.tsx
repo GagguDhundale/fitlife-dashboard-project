@@ -12,6 +12,8 @@ import Goals from "./pages/Goals";
 import Progress from "./pages/Progress";
 import Bmi from "./pages/Bmi";
 import Achievements from "./pages/Achievements";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/progress" element={<Progress />} />
           <Route path="/bmi" element={<Bmi />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
